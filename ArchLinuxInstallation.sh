@@ -57,14 +57,12 @@ mount /dev/sda4 /mnt/home
 lsblk
 read -p "Press any key..."
 
+#####  UPDATE                      #####
 pacman -Sy
-
 #####  INSTAL THE BASE PACKAGES    #####
 pacstrap /mnt base base-devel
 #####  FSTAB                       #####
 genfstab -U /mnt >> /mnt/etc/fstab
-
-pacman -Syu
 #####  UPDATE, GLIBC               #####
 pacman  --noconfirm --needed -Sy glibc
 #####  GIT                         #####
