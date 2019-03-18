@@ -18,7 +18,7 @@ passwd $PERSONAL_ACCOUNT
 #####  ACCOUNT SUDO PERMITIONS      #####
 accountperms "%wheel ALL=(ALL) NOPASSWD: ALL"
 #####  AUR PACKAGES                 #####
-source /root/dwm/install.sh 
+#source /root/dwm/install.sh 
 #####  UPDATE PACKAGES              #####
 sudo pacman --noconfirm --needed -Syu
 #####  XORG                         #####

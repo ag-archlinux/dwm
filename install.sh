@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 ##### ----- INSTALL AUR HELPERS ----- #####
-sudo pacman -S git
+sudo pacman  --noconfirm --needed -S git
 cd
 #####  install yay  #####
 git clone https://aur.archlinux.org/yay.git
