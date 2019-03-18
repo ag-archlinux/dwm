@@ -58,7 +58,7 @@ lsblk
 read -p "Press any key..."
 
 #####  UPDATE                      #####
-pacman -Sy
+pacman --noconfirm --needed -Sy
 #####  INSTAL THE BASE PACKAGES    #####
 pacstrap /mnt base base-devel
 #####  FSTAB                       #####
