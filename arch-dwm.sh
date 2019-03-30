@@ -22,7 +22,7 @@ yes | mkfs.ext4 /dev/sda1
 mount /dev/sda1 /mnt
 lsblk
 read -p "Press any key..."
-sed -i '1s/^/echo "Server = http://mirror.lnx.sk/pub/linux/archlinux/$repo/os/$arch"\n/' /etc/pacman.d/mirrorlist
+echo 'echo "Server = http://mirror.lnx.sk/pub/linux/archlinux/$repo/os/$arch"' | cat - /etc/pacman.d/mirrorlist > temp && mv temp /etc/pacman.d/mirrorlist
 pacstrap /mnt base
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
