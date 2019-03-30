@@ -41,7 +41,7 @@ grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 #####  EXIT ARCH-CHROOT            #####
 exit
-echo "####################     INSTALLATION FINISHED     ####################"
+echo "####################     INSTALLATION 1 FINISHED   ####################"
 poweroff
 
       NEXT=1
@@ -64,6 +64,7 @@ sudo pacman --noconfirm --needed -S git
 git clone https://github.com/ilyas-sadykov/dotfiles
 cd dotfiles/
 sudo bash install.sh $USER_NAME
+echo "####################     INSTALLATION 2 FINISHED   ####################"
 startx
 pkill X
 startx
@@ -72,3 +73,4 @@ startx
       ;;
   esac
 done;}
+one_two "Which installation do you want (1/2)? "
