@@ -33,22 +33,22 @@ echo "en_US.UTF-8 UTF-8" >> /etc/local.gen
 locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 #####  HOSTNAME
-echo $COMPUTER_NAME >> /etc/hostname
+echo '$COMPUTER_NAME' >> /etc/hostname
 echo "127.0.0.1  localhost" >> /etc/hosts
 echo "::1        localhost" >> /etc/hosts
-echo "127.0.0.1  " + $COMPUTER_NAME+ ".localdomain "+ $COMPUTER_NAME >> /etc/hosts
+echo "127.0.0.1  " + '$COMPUTER_NAME'+ ".localdomain "+ '$COMPUTER_NAME' >> /etc/hosts
 #####  BOOT LOADER GRUB            #####
 pacman --noconfirm --needed -S grub
 grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 #####  EXIT ARCH-CHROOT            #####
-echo "$COMPUTER_NAME"
+echo "'$COMPUTER_NAME'"
 read -p "Press any key..."
 exit ' > /mnt/chroot.sh
 arch-chroot /mnt bash chroot.sh
 rm /mnt/chroot.sh
 echo "####################     INSTALLATION 1 FINISHED   ####################"
-poweroff
+restart
 
       NEXT=1
       ;;
