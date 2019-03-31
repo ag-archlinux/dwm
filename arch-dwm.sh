@@ -22,10 +22,10 @@ yes | mkfs.ext4 /dev/sda1
 mount /dev/sda1 /mnt
 lsblk
 read -p "Press any key..."
-echo 'echo "Server = http://mirror.lnx.sk/pub/linux/archlinux/$repo/os/$arch"' | cat - /etc/pacman.d/mirrorlist > temp && mv temp /etc/pacman.d/mirrorlist
+echo 'Server = http://mirror.lnx.sk/pub/linux/archlinux/$repo/os/$arch' | cat - /etc/pacman.d/mirrorlist > temp && mv temp /etc/pacman.d/mirrorlist
 pacstrap /mnt base
 genfstab -U /mnt >> /mnt/etc/fstab
-touch ch.sh
+touch /mnt/chroot.sh
 echo -e '#!/bin/bash
 set -e
 #####  LOCALIZATION                #####
@@ -44,9 +44,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 #####  EXIT ARCH-CHROOT            #####
 echo "$COMPUTER_NAME"
 read -p "Press any key..."
-exit ' > ch.sh
-arch-chroot /mnt bash ch.sh
-rm ch.sh
+exit ' > /mnt/chroot.sh
+arch-chroot /mnt bash chroot.sh
+rm /mnt/chroot.sh
 echo "####################     INSTALLATION 1 FINISHED   ####################"
 poweroff
 
