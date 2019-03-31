@@ -26,7 +26,8 @@ echo 'echo "Server = http://mirror.lnx.sk/pub/linux/archlinux/$repo/os/$arch"' |
 pacstrap /mnt base
 genfstab -U /mnt >> /mnt/etc/fstab
 touch ch.sh
-echo -e '
+echo -e '#!/bin/bash
+set -e
 #####  LOCALIZATION                #####
 echo "en_US.UTF-8 UTF-8" >> /etc/local.gen
 locale-gen
