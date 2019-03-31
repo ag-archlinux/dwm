@@ -25,23 +25,27 @@ read -p "Press any key..."
 echo 'echo "Server = http://mirror.lnx.sk/pub/linux/archlinux/$repo/os/$arch"' | cat - /etc/pacman.d/mirrorlist > temp && mv temp /etc/pacman.d/mirrorlist
 pacstrap /mnt base
 genfstab -U /mnt >> /mnt/etc/fstab
-my-arch-chroot(){
+touch ch.sh
+echo -e '
 #####  LOCALIZATION                #####
 echo "en_US.UTF-8 UTF-8" >> /etc/local.gen
 locale-gen
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 #####  HOSTNAME
-echo $1 >> /etc/hostname
+echo $COMPUTER_NAME >> /etc/hostname
 echo "127.0.0.1  localhost" >> /etc/hosts
 echo "::1        localhost" >> /etc/hosts
-echo "127.0.0.1  " + $1+ ".localdomain "+ $1 >> /etc/hosts
+echo "127.0.0.1  " + $COMPUTER_NAME+ ".localdomain "+ $COMPUTER_NAME >> /etc/hosts
 #####  BOOT LOADER GRUB            #####
 pacman --noconfirm --needed -S grub
 grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 #####  EXIT ARCH-CHROOT            #####
-exit;}
-arch-chroot /mnt my-arch-chroot "$COMPUTER_NAME"
+echo "$COMPUTER_NAME"
+read -p "Press any key..."
+exit ' > ch.sh
+arch-chroot /mnt bash ch.sh
+rm ch.sh
 echo "####################     INSTALLATION 1 FINISHED   ####################"
 poweroff
 
