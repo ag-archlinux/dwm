@@ -24,21 +24,29 @@ lsblk
 read -p "Press any key..."
 echo 'echo "Server = http://mirror.lnx.sk/pub/linux/archlinux/$repo/os/$arch"' | cat - /etc/pacman.d/mirrorlist > temp && mv temp /etc/pacman.d/mirrorlist
 pacstrap /mnt base
+echo "#1#"
 genfstab -U /mnt >> /mnt/etc/fstab
+echo "#2#"
 arch-chroot /mnt
+echo "#3#"
 #####  LOCALIZATION                #####
 echo "en_US.UTF-8 UTF-8" >> /etc/local.gen
+echo "#4#"
 locale-gen
+echo "#5#"
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "#6#"
 #####  HOSTNAME
 echo $COMPUTER_NAME >> /etc/hostname
 echo "127.0.0.1  localhost" >> /etc/hosts
 echo "::1        localhost" >> /etc/hosts
 echo "127.0.0.1  " + $COMPUTER_NAME+ ".localdomain "+ $COMPUTER_NAME >> /etc/hosts
+echo "#7#"
 #####  BOOT LOADER GRUB            #####
 pacman --noconfirm --needed -S grub
 grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
+echo "#8#"
 #####  EXIT ARCH-CHROOT            #####
 exit
 echo "####################     INSTALLATION 1 FINISHED   ####################"
