@@ -42,13 +42,11 @@ pacman --noconfirm --needed -S grub
 grub-install --target=i386-pc /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 #####  EXIT ARCH-CHROOT            #####
-echo "'$COMPUTER_NAME'"
-read -p "Press any key..."
 exit ' > /mnt/chroot.sh
 arch-chroot /mnt bash chroot.sh
 rm /mnt/chroot.sh
 echo "####################     INSTALLATION 1 FINISHED   ####################"
-restart
+reboot
 
       NEXT=1
       ;;
