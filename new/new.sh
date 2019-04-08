@@ -17,14 +17,13 @@
             BOOT="BIOS"
         fi
     ##### c) Connect to the Internet
-        ping -c 3 duckduckgo.com > /dev/null
-        while [ $? != 0 ]
-        do
+    	ping -q -w1 -c1 duckduckgo.com &>/dev/null && CONN="CONNECTED" || CONN="NOT_CONNECTED"
+        while [ "$CONN" != "CONNECTED" ]; do
             echo -e "\033[0;36m'You are not connected to the internet!'\033[0;0m"
             ip link
             read -p "What is name of your wifi? (number:name: ...) : " WIFI
             wifi-menu -o $WIFI
-            ping -c 3 duckduckgo.com > /dev/null
+            ping -q -w1 -c1 duckduckgo.com &>/dev/null && CONN="CONNECTED" || CONN="NOT_CONNECTED"
         done
         echo "You are connected to the internet!"
     ##### d) Update the system clock
