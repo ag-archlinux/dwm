@@ -116,9 +116,10 @@ EOF
 #####     --------------------------------------------------
 #####     2. Installation
 	##### a) Select the mirrors
-		#pacman --noconfirm --needed -S python
-	    #cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-		#curl -s "https://www.archlinux.org/mirrorlist/?country=SK&country=CZ&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+	    cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+		curl -s "https://www.archlinux.org/mirrorlist/?country=SK&country=CZ&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+		head -n5 /etc/pacman.d/mirrorlist
+		read -p "Press any key..."
 	##### b) Install the base packages
 		pacstrap /mnt base base-devel
 #####     3. Configure the system
@@ -126,7 +127,9 @@ EOF
 	    cat /mnt/etc/fstab
         genfstab /mnt >> /mnt/etc/fstab
 	##### b) Chroot
+		curl https://raw.githubusercontent.com/ag-archlinux/dwm/master/new/chroot.sh > /mnt/chroot.sh
 	    arch-chroot /mnt bash chroot.sh
+	    rm /mnt/chroot.sh
     ##### c) Unmount all the partitions
     	umount -R /mnt
     ##### d) Restart the machine
