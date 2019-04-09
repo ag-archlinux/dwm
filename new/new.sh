@@ -17,7 +17,7 @@
             BOOT="BIOS"
         fi
     ##### c) Connect to the Internet
-    	ping -q -w1 -c1 duckduckgo.com &>/dev/null && CONN="CONNECTED" || CONN="NOT_CONNECTED"
+    	ping -q -w1 -c1 google.com &>/dev/null && CONN="CONNECTED" || (CONN="NOT_CONNECTED";)
         while [ "$CONN" != "CONNECTED" ]; do
             echo -e "\033[0;36m'You are not connected to the internet!'\033[0;0m"
             ip link
