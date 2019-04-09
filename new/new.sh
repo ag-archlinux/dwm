@@ -116,9 +116,9 @@ EOF
 #####     --------------------------------------------------
 #####     2. Installation
 	##### a) Select the mirrors
-		pacman --noconfirm --needed -S python
-	    cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-		curl -s "https://www.archlinux.org/mirrorlist/?country=SK&country=CZ&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+		#pacman --noconfirm --needed -S python
+	    #cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+		#curl -s "https://www.archlinux.org/mirrorlist/?country=SK&country=CZ&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 	##### b) Install the base packages
 		pacstrap /mnt base base-devel
 #####     3. Configure the system
